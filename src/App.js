@@ -22,6 +22,7 @@ class App {
     this.searchInput = new SearchInput({
       $target,
       onSearch: (keyword) => {
+        new Loading($target);
         api.fetchCats(keyword).then(({ data }) => this.setState(data));
       },
     });
@@ -31,12 +32,15 @@ class App {
       $target,
       initialData: this.data,
       onClick: async (image) => {
+        new Loading($target);
         const details = await api.fetchCatDetails(image.id);
 
         this.imageInfo.setState({
           visible: true,
           image: details.data,
         });
+
+        this.finishLoading();
       },
     });
 
@@ -49,9 +53,15 @@ class App {
     });
   }
 
+  finishLoading() {
+    this.$target.removeChild(document.querySelector(".LoadingContainer"));
+  }
+
   setState(nextData) {
     console.log(this);
     this.data = nextData;
     this.searchResult.setState(nextData);
+    // 로딩 종료
+    this.finishLoading();
   }
 }
