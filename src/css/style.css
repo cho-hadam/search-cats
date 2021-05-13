@@ -6,6 +6,10 @@
   font-style: normal;
 }
 
+:root {
+  --color: #000;
+}
+
 body.light {
   --background: #fff;
   --color: #000;
