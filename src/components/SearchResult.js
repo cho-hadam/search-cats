@@ -28,6 +28,7 @@ class SearchResult {
           (cat) => `
             <article class="item">
                 <img src=${cat.url} alt=${cat.name} />
+                <span class="Tooltip">${cat.name}</span>
             </article>
         `
         )
