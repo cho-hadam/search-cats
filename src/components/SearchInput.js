@@ -5,7 +5,7 @@ class SearchInput {
   $searchButton = null;
   onSearch = null;
 
-  constructor({ $target, onSearch }) {
+  constructor({ $target, onSearch, onRandomSearch }) {
     const $searchContainer = document.createElement("header");
     $searchContainer.className = "SearchContainer";
 
@@ -19,6 +19,7 @@ class SearchInput {
     $searchButton.className = "SearchButton";
     $searchButton.innerText = "랜덤";
     this.$searchButton = $searchButton;
+    this.$searchButton.addEventListener("click", onRandomSearch);
     $searchContainer.appendChild(this.$searchButton);
 
     $target.appendChild($searchContainer);

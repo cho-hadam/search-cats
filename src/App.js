@@ -37,6 +37,10 @@ class App {
         api.fetchCats(keyword).then(({ data }) => this.setState(data));
         this.searchKeywords.setState(keyword);
       },
+      onRandomSearch: async () => {
+        new Loading($target);
+        api.fetchRandomCats().then(({ data }) => this.setState(data));
+      },
     });
     if (!storage.get("keywords")) {
       this.searchInput.$searchInput.focus();
