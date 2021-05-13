@@ -32,6 +32,7 @@ class App {
     this.searchKeywords = new SearchKeywords({
       $target,
       onClick: (e) => {
+        console.log(e);
         const keyword = e.target.innerText;
         this.searchInput.onSearch(keyword);
         // 키워드 누를 시 검색 input 초기화
