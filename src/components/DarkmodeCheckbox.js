@@ -1,4 +1,4 @@
-class DarkmodeCheckbox {
+export default class DarkmodeCheckbox {
   $button = null;
 
   constructor({ $target, changeMode }) {

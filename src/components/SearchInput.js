@@ -1,6 +1,6 @@
 const TEMPLATE = '<input type="text">';
 
-class SearchInput {
+export default class SearchInput {
   $searchInput = null;
   $searchButton = null;
   onSearch = null;

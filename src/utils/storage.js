@@ -24,3 +24,5 @@ const storage = {
     localStorage.clear();
   },
 };
+
+export default storage;

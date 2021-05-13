@@ -1,4 +1,6 @@
-class SearchKeywords {
+import storage from "../utils/storage.js";
+
+export default class SearchKeywords {
   $container = null;
   keywords = [];
   onClick = null;

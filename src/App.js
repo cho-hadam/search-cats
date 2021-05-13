@@ -1,6 +1,15 @@
+import storage from "./utils/storage.js";
+import api from "./api/api.js";
+import DarkmodeCheckbox from "./components/DarkmodeCheckbox.js";
+import SearchInput from "./components/SearchInput.js";
+import SearchKeywords from "./components/SearchKeywords.js";
+import Loading from "./components/Loading.js";
+import SearchResult from "./components/SearchResult.js";
+import ImageInfo from "./components/ImageInfo.js";
+
 console.log("app is running!");
 
-class App {
+export default class App {
   $target = null;
   data = [];
 
