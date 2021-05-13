@@ -38,18 +38,27 @@ class App {
         this.searchKeywords.setState(keyword);
       },
     });
-    this.searchInput.$searchInput.focus();
+    if (!storage.get("keywords")) {
+      this.searchInput.$searchInput.focus();
+    }
 
     this.searchKeywords = new SearchKeywords({
       $target,
       onClick: (e) => {
-        console.log(e);
-        const keyword = e.target.innerText;
-        this.searchInput.onSearch(keyword);
-        // 키워드 누를 시 검색 input 초기화
-        this.searchInput.$searchInput.value = "";
+        if (e.target !== this.searchKeywords.$container) {
+          const keyword = e.target.innerText;
+          this.searchInput.onSearch(keyword);
+          // 키워드 누를 시 검색 input 초기화
+          this.searchInput.$searchInput.value = "";
+        }
       },
     });
+    const keywords = storage.get("keywords");
+    if (keywords) {
+      const keyword = keywords[keywords.length - 1];
+      this.searchInput.onSearch(keyword);
+      this.searchInput.$searchInput.value = keyword;
+    }
 
     this.searchResult = new SearchResult({
       $target,

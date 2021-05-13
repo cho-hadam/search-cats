@@ -7,12 +7,14 @@ class SearchKeywords {
     this.$container = document.createElement("div");
     this.$container.className = "KeywordsContainer";
 
-    $target.appendChild(this.$container);
+    this.$container.addEventListener("click", onClick);
 
-    this.onClick = onClick;
+    $target.appendChild(this.$container);
   }
 
   setState(nextData) {
+    this.keywords = storage.get("keywords") || [];
+
     // 키워드가 있었을 경우 최신으로만 변경
     if (this.keywords.includes(nextData)) {
       this.keywords.splice(this.keywords.indexOf(nextData), 1);
@@ -22,6 +24,9 @@ class SearchKeywords {
     if (this.keywords.length > 5) {
       this.keywords.shift();
     }
+
+    storage.set("keywords", this.keywords);
+
     this.render();
   }
 
@@ -30,8 +35,5 @@ class SearchKeywords {
       .reverse()
       .map((keyword) => `<div class="Keyword">${keyword}</div>`)
       .join("");
-
-    const $keyword = document.querySelector(".Keyword");
-    $keyword.addEventListener("click", this.onClick);
   }
 }
