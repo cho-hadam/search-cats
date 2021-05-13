@@ -6,6 +6,7 @@ import SearchKeywords from "./components/SearchKeywords.js";
 import Loading from "./components/Loading.js";
 import SearchResult from "./components/SearchResult.js";
 import ImageInfo from "./components/ImageInfo.js";
+import Banner from "./components/Banner.js";
 
 console.log("app is running!");
 
@@ -53,7 +54,7 @@ export default class App {
         this.searchKeywords.setState(keyword);
       },
       onRandomSearch: async () => {
-        new Loading($target);
+        new Loading(this.$target);
 
         const { data } = await api.fetchRandomCats();
         this.setState(data);
@@ -83,6 +84,19 @@ export default class App {
       this.searchInput.onSearch(keyword);
       this.searchInput.$searchInput.value = keyword;
     }
+
+    this.banner = new Banner({
+      $target,
+      onRandomSearch: async () => {
+        new Loading(this.$target);
+
+        const { data } = await api.fetchRandomCats();
+        this.banner.setState(data);
+
+        // 로딩 종료
+        this.finishLoading();
+      },
+    });
 
     this.searchResult = new SearchResult({
       $target,

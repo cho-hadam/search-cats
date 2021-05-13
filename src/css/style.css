@@ -189,6 +189,28 @@ body * {
   transition: opacity ease-in 0.2s;
 }
 
+/* 배너 */
+.Banner {
+  display: flex;
+  height: 500px;
+}
+
+.Banner .BannerItem {
+  width: 80%;
+}
+
+.Banner .BannerItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Banner .LeftButton,
+.Banner .RightButton {
+  width: 10%;
+  cursor: pointer;
+}
+
 /* dark mode 처리 */
 @media (prefers-color-scheme: dark) {
   body {
