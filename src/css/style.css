@@ -76,6 +76,7 @@ body * {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
+  animation: fadein 1s;
 }
 
 .ImageInfo .title {
@@ -100,6 +101,24 @@ body * {
 
 .ImageInfo .content-wrapper img {
   width: 100%;
+}
+
+/* 페이드인, 페이드아웃 */
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 /* 로딩 화면 */
