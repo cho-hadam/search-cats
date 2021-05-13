@@ -13,6 +13,12 @@ class App {
         api.fetchCats(keyword).then(({ data }) => this.setState(data));
       },
     });
+
+    this.searchResult = new SearchResult({
+      $target,
+      initialData: this.data,
+      onClick: (image) => {},
+    });
   }
 
   setState(nextData) {
