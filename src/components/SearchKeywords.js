@@ -27,6 +27,7 @@ class SearchKeywords {
 
   render() {
     this.$container.innerHTML = this.keywords
+      .reverse()
       .map((keyword) => `<div class="Keyword">${keyword}</div>`)
       .join("");
 
