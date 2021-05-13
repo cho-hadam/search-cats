@@ -41,14 +41,25 @@ export default class App {
 
     this.searchInput = new SearchInput({
       $target,
-      onSearch: (keyword) => {
+      onSearch: async (keyword) => {
         new Loading($target);
-        api.fetchCats(keyword).then(({ data }) => this.setState(data));
+
+        const { data } = await api.fetchCats(keyword);
+        this.setState(data);
+
+        // 로딩 종료
+        this.finishLoading();
+
         this.searchKeywords.setState(keyword);
       },
       onRandomSearch: async () => {
         new Loading($target);
-        api.fetchRandomCats().then(({ data }) => this.setState(data));
+
+        const { data } = await api.fetchRandomCats();
+        this.setState(data);
+
+        // 로딩 종료
+        this.finishLoading();
       },
     });
     if (!storage.get("keywords")) {
@@ -78,6 +89,7 @@ export default class App {
       initialData: this.data,
       onClick: async (image) => {
         new Loading($target);
+
         const details = await api.fetchCatDetails(image.id);
 
         this.imageInfo.setState({
@@ -106,7 +118,5 @@ export default class App {
     console.log(this);
     this.data = nextData;
     this.searchResult.setState(nextData);
-    // 로딩 종료
-    this.finishLoading();
   }
 }
