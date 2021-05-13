@@ -109,6 +109,7 @@ body * {
   }
 }
 
+/* HTML, CSS 관련 - 디바이스 가로 길이 */
 @media (max-width: 992px) {
   .SearchResult {
     grid-template-columns: repeat(3, minmax(250px, 1fr));
@@ -118,6 +119,11 @@ body * {
 @media (max-width: 768px) {
   .SearchResult {
     grid-template-columns: repeat(2, minmax(250px, 1fr));
+  }
+
+  /* 이미지 상세 보기 모달 관련 */
+  .ImageInfo .content-wrapper {
+    width: 100%;
   }
 }
 
