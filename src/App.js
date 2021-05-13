@@ -17,7 +17,20 @@ class App {
     this.searchResult = new SearchResult({
       $target,
       initialData: this.data,
-      onClick: (image) => {},
+      onClick: (image) => {
+        this.imageInfo.setState({
+          visible: true,
+          image,
+        });
+      },
+    });
+
+    this.imageInfo = new ImageInfo({
+      $target,
+      data: {
+        visible: false,
+        image: null,
+      },
     });
   }
 
