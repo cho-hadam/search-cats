@@ -24,9 +24,20 @@ class App {
       onSearch: (keyword) => {
         new Loading($target);
         api.fetchCats(keyword).then(({ data }) => this.setState(data));
+        this.searchKeywords.setState(keyword);
       },
     });
     this.searchInput.$searchInput.focus();
+
+    this.searchKeywords = new SearchKeywords({
+      $target,
+      onClick: (e) => {
+        const keyword = e.target.innerText;
+        this.searchInput.onSearch(keyword);
+        // 키워드 누를 시 검색 input 초기화
+        this.searchInput.$searchInput.value = "";
+      },
+    });
 
     this.searchResult = new SearchResult({
       $target,

@@ -1,6 +1,8 @@
 const TEMPLATE = '<input type="text">';
 
 class SearchInput {
+  onSearch = null;
+
   constructor({ $target, onSearch }) {
     const $searchInput = document.createElement("input");
     this.$searchInput = $searchInput;
@@ -9,10 +11,11 @@ class SearchInput {
     $searchInput.className = "SearchInput";
     $target.appendChild($searchInput);
 
+    this.onSearch = onSearch;
     $searchInput.addEventListener("keyup", (e) => {
       // Enter
       if (e.keyCode === 13) {
-        onSearch(e.target.value);
+        this.onSearch(e.target.value);
       }
     });
 
