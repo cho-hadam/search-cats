@@ -20,7 +20,7 @@ class SearchResult {
   }
 
   render() {
-    if (this.data.length === 0) {
+    if (!this.data || this.data.length === 0) {
       this.$searchResult.innerHTML = `검색 결과가 없습니다.`;
     } else {
       this.$searchResult.innerHTML = this.data
