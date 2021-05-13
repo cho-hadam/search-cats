@@ -25,6 +25,7 @@ class App {
         api.fetchCats(keyword).then(({ data }) => this.setState(data));
       },
     });
+    this.searchInput.$searchInput.focus();
 
     this.searchResult = new SearchResult({
       $target,

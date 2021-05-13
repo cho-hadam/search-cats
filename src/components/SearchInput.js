@@ -16,6 +16,13 @@ class SearchInput {
       }
     });
 
+    // 기존 입력 키워드 삭제
+    $searchInput.addEventListener("focus", (e) => {
+      if (e.target.value !== "") {
+        e.target.value = "";
+      }
+    });
+
     console.log("SearchInput created.", this);
   }
 
