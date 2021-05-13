@@ -20,20 +20,24 @@ class SearchResult {
   }
 
   render() {
-    this.$searchResult.innerHTML = this.data
-      .map(
-        (cat) => `
+    if (this.data.length === 0) {
+      this.$searchResult.innerHTML = `검색 결과가 없습니다.`;
+    } else {
+      this.$searchResult.innerHTML = this.data
+        .map(
+          (cat) => `
             <article class="item">
                 <img src=${cat.url} alt=${cat.name} />
             </article>
         `
-      )
-      .join("");
+        )
+        .join("");
 
-    this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
-      $item.addEventListener("click", () => {
-        this.onClick(this.data[index]);
+      this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
+        $item.addEventListener("click", () => {
+          this.onClick(this.data[index]);
+        });
       });
-    });
+    }
   }
 }
