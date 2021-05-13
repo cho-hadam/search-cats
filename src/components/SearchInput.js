@@ -1,15 +1,27 @@
 const TEMPLATE = '<input type="text">';
 
 class SearchInput {
+  $searchInput = null;
+  $searchButton = null;
   onSearch = null;
 
   constructor({ $target, onSearch }) {
+    const $searchContainer = document.createElement("header");
+    $searchContainer.className = "SearchContainer";
+
     const $searchInput = document.createElement("input");
     this.$searchInput = $searchInput;
     this.$searchInput.placeholder = "고양이를 검색해보세요.|";
-
     $searchInput.className = "SearchInput";
-    $target.appendChild($searchInput);
+    $searchContainer.appendChild(this.$searchInput);
+
+    const $searchButton = document.createElement("button");
+    $searchButton.className = "SearchButton";
+    $searchButton.innerText = "랜덤";
+    this.$searchButton = $searchButton;
+    $searchContainer.appendChild(this.$searchButton);
+
+    $target.appendChild($searchContainer);
 
     this.onSearch = onSearch;
     $searchInput.addEventListener("keyup", (e) => {
