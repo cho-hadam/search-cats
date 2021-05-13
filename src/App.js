@@ -7,6 +7,18 @@ class App {
   constructor($target) {
     this.$target = $target;
 
+    this.darkmodeCheckbox = new DarkmodeCheckbox({
+      $target,
+      changeMode: (checked) => {
+        const $body = document.querySelector("body");
+        if (checked) {
+          $body.className = "dark";
+        } else {
+          $body.className = "light";
+        }
+      },
+    });
+
     this.searchInput = new SearchInput({
       $target,
       onSearch: (keyword) => {
