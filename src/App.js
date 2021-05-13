@@ -7,17 +7,28 @@ class App {
   constructor($target) {
     this.$target = $target;
 
+    // 다크모드 관련 기능
+    const $body = document.querySelector("body");
+    const mode = storage.get("mode");
     this.darkmodeCheckbox = new DarkmodeCheckbox({
       $target,
       changeMode: (checked) => {
-        const $body = document.querySelector("body");
         if (checked) {
-          $body.className = "dark";
+          storage.set("mode", "dark");
         } else {
-          $body.className = "light";
+          storage.set("mode", "light");
         }
+
+        // 모드 설정
+        $body.classList = storage.get("mode");
       },
     });
+    if (mode) {
+      $body.classList = mode;
+      if (mode === "dark") {
+        this.darkmodeCheckbox.$button.checked = true;
+      }
+    }
 
     this.searchInput = new SearchInput({
       $target,
