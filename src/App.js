@@ -87,7 +87,10 @@ export default class App {
     this.searchResult = new SearchResult({
       $target,
       initialData: this.data,
-      onClick: async (image) => {
+      onClick: async (e) => {
+        const index = e.path[e.path.length - 7].id;
+        const image = this.data[index];
+
         new Loading($target);
 
         const details = await api.fetchCatDetails(image.id);

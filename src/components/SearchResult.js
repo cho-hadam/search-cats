@@ -1,7 +1,6 @@
 export default class SearchResult {
   $searchResult = null;
   data = null;
-  onClick = null;
 
   constructor({ $target, initialData, onClick }) {
     this.$searchResult = document.createElement("section");
@@ -9,7 +8,8 @@ export default class SearchResult {
     $target.appendChild(this.$searchResult);
 
     this.data = initialData;
-    this.onClick = onClick;
+
+    this.$searchResult.addEventListener("click", onClick);
 
     // this.render();
   }
@@ -25,20 +25,14 @@ export default class SearchResult {
     } else {
       this.$searchResult.innerHTML = this.data
         .map(
-          (cat) => `
-            <article class="item">
+          (cat, index) => `
+            <article id="${index}" class="item">
                 <img src=${cat.url} alt=${cat.name} />
                 <span class="Tooltip">${cat.name}</span>
             </article>
         `
         )
         .join("");
-
-      this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
-        $item.addEventListener("click", () => {
-          this.onClick(this.data[index]);
-        });
-      });
     }
   }
 }
